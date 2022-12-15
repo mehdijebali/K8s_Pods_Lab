@@ -144,6 +144,67 @@ spec:
   restartPolicy: Never
 ```
 ## Scheduling
+Scheduling is a process to assign Pods to Nodes, so Kubectl can run them. The scheduler is K8s Master Node component that decides Pods assignment on Nodes. K8s Scheduler selects the suitable node for Pods based on resource request, available node resources, and configurations (Node Labels, Node Selector, Affinity, Anti-Affinity)
+#### Node Selector
+**nodeSelector** is deﬁned in Pod Spec to limit which Node(s) the pod can be scheduled on. It uses Labesls in order to select the suitable Node.
+```
+spec:
+  containers:
+    - name: nginx
+  .
+  .
+  .
+  nodeSelector:
+    disktype: ssd
+```
+#### Node Name
+We can bypass scheduling and assign Pod to a Speciﬁc Node using **nodeName** spec. 
+```
+spec:
+  containers:
+    - name: nginx
+  .
+  .
+  .
+  nodeName: k8s-worder-01
+```
+#### Node Affinity/ Anti-Affinity
+Node Afﬁnity is an enhanced version of NodeSelector. It is used for pods allocation on Worker Nodes. 
+```
+spec:
+  containers:
+    - name: nginx
+  .
+  .
+  .
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: disktype
+                operator: In
+                values:
+                  - ssd
+```
+Anti-Afﬁnity is opposite of Afﬁnity and NodeSelector concept.
+```
+spec:
+  containers:
+    - name: nginx
+  .
+  .
+  .
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: disktype
+                operator: NotIn
+                values:
+                  - ssd
+```
 ## Pod Lifecycle
 ## Multi-Containers
 K8s Pods can have single or multiple containers. In Multi Container Pods, containers share the resources like network and storage, also can communicate on Localhost. The Best Practice is to keep the containers in separate Pods, until we would like to share resources.
