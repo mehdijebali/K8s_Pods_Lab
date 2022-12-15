@@ -147,3 +147,9 @@ spec:
 ## Scheduling
 ## Pod Lifecycle
 ## Multi-Containers
+K8s Pods can have single or multiple containers. In Multi Container Pods, containers share the resources like network and storage, also can communicate on Localhost. The Best Practice is to keep the containers in separate Pods, until we would like to share resources.
+Each container sharing a Pod can interact with shared resources:
+#### Network
+Containers share the same Network and communicate on any Port, unless the port is exposed to cluster.
+#### Storage
+Containers Can use shared Volume to share data in a Pod.
