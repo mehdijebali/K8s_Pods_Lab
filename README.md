@@ -107,7 +107,6 @@ spec:
         initialDelaySeconds: 3
         periodSeconds: 3
 ```
-## Node Affinity
 ## Restart Policies
 K8s has capability to Auto-Restart containers when they fails. RestartPolicies customize the K8s Container Restart behaviour and you can choose when to Restart Containers.
 K8s has three RestartPolicies
