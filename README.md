@@ -109,6 +109,41 @@ spec:
 ```
 ## Node Affinity
 ## Restart Policies
+K8s has capability to Auto-Restart containers when they fails. RestartPolicies customize the K8s Container Restart behaviour and you can choose when to Restart Containers.
+K8s has three RestartPolicies
+#### Always
+Always is default restart policy in K8s. With Always Policy, containers always restart even if container completed successfully. This policy is recommended for containers that should always be in running state.
+```
+spec:
+  containers:
+    - name: app
+    .
+    .
+    .
+  restartPolicy: Always
+```
+#### OnFailure
+OnFailure is only works, if container Process exits with Error code. Or the liveness probe determines the container unhealthy. We use this policy on applications that need to be run successfully and then stop.
+```
+spec:
+  containers:
+    - name: app
+    .
+    .
+    .
+  restartPolicy: OnFailure
+```
+#### Never
+Never policy allows container to never restart even the container liveness probe failed. We use this policy for applications that Run only once and never automatically restarted.
+```
+spec:
+  containers:
+    - name: app
+    .
+    .
+    .
+  restartPolicy: Never
+```
 ## Scheduling
 ## Pod Lifecycle
 ## Multi-Containers
