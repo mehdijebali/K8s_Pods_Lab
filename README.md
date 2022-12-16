@@ -217,6 +217,7 @@ It runs a specific command inside the container and the resources consumed by th
 #### HTTP
 It executes an HTTP request against a specific endpoint on the container.
 ## Pod DNS
+K8s Virtual Network uses DNS to allow PODs to locate other PODs and Services using Domain Name. DNS runs as a Service in kube-system namespace. All Pods in Kubeadm cluster are automatically given a Domain Name like **pod-ip.namespace-name.pod.cluster.local**
 ## Multi-Containers
 K8s Pods can have single or multiple containers. In Multi Container Pods, containers share the resources like network and storage, also can communicate on Localhost. The Best Practice is to keep the containers in separate Pods, until we would like to share resources.
 Each container sharing a Pod can interact with shared resources:
