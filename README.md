@@ -206,6 +206,17 @@ spec:
                   - ssd
 ```
 ## Pod Lifecycle
+This tutorial helps executing specific tasks during K8s pod lifecycle. For example, we can run specific code during specific events of container lifecycle using **Hooks**
+#### PostStart
+This hook gets executed upon container creation but there is no guarantee that it will run after the container ENTRYPOINT.
+#### PreStop
+This hook gets executed just before a container is terminated. This is a blocking call which means the hook execution must complete before the call to delete a container can be sent.
+There are two types of **handlers** which can be implemented in the hook implementation:
+#### Exec
+It runs a specific command inside the container and the resources consumed by the command are counted against the container.
+#### HTTP
+It executes an HTTP request against a specific endpoint on the container.
+## Pod DNS
 ## Multi-Containers
 K8s Pods can have single or multiple containers. In Multi Container Pods, containers share the resources like network and storage, also can communicate on Localhost. The Best Practice is to keep the containers in separate Pods, until we would like to share resources.
 Each container sharing a Pod can interact with shared resources:
