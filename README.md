@@ -225,3 +225,21 @@ Each container sharing a Pod can interact with shared resources:
 Containers share the same Network and communicate on any Port, unless the port is exposed to cluster.
 #### Storage
 Containers Can use shared Volume to share data in a Pod.
+## Instructions
+1. Clone the project 
+```
+git clone https://github.com/mehdijebali/K8s_Pods_Lab.git
+```
+2. Apply manifest using **kubectl**
+```
+kubectl apply -f /path/to/manifest.yml
+```
+3. You can check the status of specific pod with the following command
+```
+kubecl get pods | grep <pod_name>
+```
+4. You can also list additional information of any pod for any debugging issue
+```
+kubectl describe pod <pod_name>
+```
+The **<pod_name>** is the value of the key `metadata.name` in each k8s manifest yaml file.
